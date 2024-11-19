@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "yabla thing (mcq and fitb currently)",
+    "description": "vigilante hacker was here",
+    "version": "1.0",
+    "web_accessible_resources": [
+        {
+            "resources": ["js/autocomplete.js"],
+            "matches": ["https://*.yabla.com/*"]
+        }
+    ],
+    "content_scripts": [
+        { "matches": ["https://*.yabla.com/*"], "js": ["js/inject.js"] }
+    ]
+}
