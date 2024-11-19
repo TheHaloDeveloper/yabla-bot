@@ -4,6 +4,10 @@ const urls = ["/multiple_choice.php", "/fill_in_the_blank.php", "/player_cdn.php
 (function () {
     if (!urls.includes(location.pathname)) return;
 
+    function rand(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     function start(type) {
         answerQuestion(type);
         setTimeout(() => {
@@ -23,7 +27,7 @@ const urls = ["/multiple_choice.php", "/fill_in_the_blank.php", "/player_cdn.php
             if (totalPoints.innerText !== "") {
                 document.getElementsByClassName("play_again")[0].click();
                 totalPoints.innerText = "";
-                setTimeout(() => (type === "mc" ? start(type) : start(type)), 2000);
+                setTimeout(() => (type === "mc" ? start(type) : start(type)), rand(2000, 7000));
                 return;
             }
             type === "mc" ? start(type) : start(type)
@@ -33,7 +37,7 @@ const urls = ["/multiple_choice.php", "/fill_in_the_blank.php", "/player_cdn.php
     document.addEventListener("keydown", (e) => {
         if (e.key === "`") {
             document.getElementsByClassName("blue button start_game")[0].click()
-            setTimeout(() => start(location.pathname === "/multiple_choice.php" ? "mc" : "fitb"), 2000)
+            setTimeout(() => start(location.pathname === "/multiple_choice.php" ? "mc" : "fitb"), rand(2000, 7000))
         }
     })
 
